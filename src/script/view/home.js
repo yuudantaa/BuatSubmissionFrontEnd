@@ -37,16 +37,40 @@ const home = () => {
   };
 
   const displayNotes = (notes) => {
-  const noteItemElements = notes.map((note) => {
-    const noteItemElement = document.createElement('notes-item');
-    noteItemElement.notes = note;
-    return noteItemElement;
-  });
-
-  // Add an element for the newly created note (optional)
-  const newNoteElement = document.createElement('notes-item');
-  newNoteElement.notes = { title, body }; // Use submitted title and body
-  noteItemElements.unshift(newNoteElement); // Add to the beginning of the list
+    const noteItemElements = notes.map((note) => {
+      const noteItemElement = document.createElement('notes-item');
+      noteItemElement.notes = note; // Optional: store note data on the element
+  
+      // Create elements for each note property
+      const noteIdElement = document.createElement('span');
+      noteIdElement.classList.add('note-id'); // Add a class for styling
+      noteIdElement.textContent = `ID: ${note.id}`;
+  
+      const noteTitleElement = document.createElement('h3');
+      noteTitleElement.classList.add('note-title'); // Add a class for styling
+      noteTitleElement.textContent = note.title;
+  
+      const noteBodyElement = document.createElement('p');
+      noteBodyElement.classList.add('note-body'); // Add a class for styling
+      noteBodyElement.textContent = note.body;
+  
+      const noteAuthorElement = document.createElement('span');
+      noteAuthorElement.classList.add('note-author'); // Add a class for styling
+      noteAuthorElement.textContent = `By: ${note.author || 'Unknown'}`; // Handle missing author
+  
+      const noteIsCompleteElement = document.createElement('span');
+      noteIsCompleteElement.classList.add('note-is-complete'); // Add a class for styling
+      noteIsCompleteElement.textContent = note.isComplete ? 'Completed' : 'Pending';
+  
+      // Append all elements to the note item
+      noteItemElement.appendChild(noteIdElement);
+      noteItemElement.appendChild(noteTitleElement);
+      noteItemElement.appendChild(noteBodyElement);
+      noteItemElement.appendChild(noteAuthorElement);
+      noteItemElement.appendChild(noteIsCompleteElement);
+  
+      return noteItemElement;
+    });
 
   Utils.emptyElement(noteListElement);
   noteListElement.append(...noteItemElements);

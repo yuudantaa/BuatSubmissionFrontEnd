@@ -19,7 +19,8 @@ class NotesApi {
     const response = await fetch(BASE_URL + '/notes');
 
     if (response.status >= 200 && response.status < 300) {
-      return await response.json();
+      const result = await response.json();
+      return result.data;
     } else {
       throw new Error(`Failed to get notes: ${response.statusText}`);
     }
