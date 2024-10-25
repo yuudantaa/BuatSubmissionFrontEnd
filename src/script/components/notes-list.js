@@ -1,3 +1,4 @@
+import Utils from '../utils.js';
 class NotesList extends HTMLElement {
   _shadowRoot = null;
   _style = null;
@@ -35,9 +36,9 @@ class NotesList extends HTMLElement {
 
   set column(value) {
     const newValue = Number(value);
-    if (isNaN(newValue) || !isFinite(newValue)) return;
+    if (!Utils.isValidInteger(newValue)) return;
 
-    this._column = newValue;
+    this._column = value;
   }
 
   get column() {
@@ -46,11 +47,11 @@ class NotesList extends HTMLElement {
 
   set gutter(value) {
     const newValue = Number(value);
-    if (isNaN(newValue) || !isFinite(newValue)) return;
+    if (!Utils.isValidInteger(newValue)) return;
 
-    this._gutter = newValue;
+    this._gutter = value;
   }
-
+ 
   get gutter() {
     return this._gutter;
   }

@@ -57,6 +57,25 @@ class NotesItem extends HTMLElement {
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 5; /* number of lines to show */
       }
+
+      .notes-info button {
+        border: 0;
+        padding-inline: 24px;
+        background-color: cornflowerblue;
+        text-transform: uppercase;
+        font-size: 1rem;
+        color: white;
+        cursor: pointer;
+        transition: 100ms linear;
+      }
+
+      .notes-info button:hover {
+        background-color: #4485ff;
+      }
+
+      .notes-info button:active {
+        background-color: #6c9aee;
+      }
     `;
   }
 
@@ -72,6 +91,7 @@ class NotesItem extends HTMLElement {
           <div class="notes-info_body">
             <p>${this._notes.body}</p>
           </div>
+          <button>Delete</button>
         </div>
       </div>
     `;
